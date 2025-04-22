@@ -1,8 +1,10 @@
 import { verifyUser } from "../api";
 import { useState } from "react";
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate()
     const [user, setUser] = useState({
         email:"",
         password:""
@@ -13,7 +15,11 @@ const Login = () => {
     async function handleSubmit(e){
         e.preventDefault()
         let response = await verifyUser(user);
-        console.log(response)
+        if(response){
+            navigate("/home")
+        }else{
+            alert("Login Failed")
+        }
     }
 
     
