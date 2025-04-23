@@ -1,8 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { pageData } from './pageData'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  function handleLogOut (){
+    sessionStorage.removeItem("User")
+    navigate("/")
+  }
   return (
   <div className='navbar'>
       {
@@ -14,6 +20,7 @@ const Navbar = () => {
             )
         })
     }
+    <button onClick={handleLogOut}>Log Out</button>
   </div>
   )
 }
